@@ -8,7 +8,6 @@ import tcod
 from game_map import GameMap
 import tile_types
 
-
 if TYPE_CHECKING:
     from entity import Entity
 
@@ -35,15 +34,15 @@ class RectangularRoom:
     def intersects(self, other: RectangularRoom) -> bool:
         """Return True if this room overlaps with another RectangularRoom."""
         return (
-            self.x1 <= other.x2
-            and self.x2 >= other.x1
-            and self.y1 <= other.y2
-            and self.y2 >= other.y1
+                self.x1 <= other.x2
+                and self.x2 >= other.x1
+                and self.y1 <= other.y2
+                and self.y2 >= other.y1
         )
 
 
 def tunnel_between(
-    start: Tuple[int, int], end: Tuple[int, int]
+        start: Tuple[int, int], end: Tuple[int, int]
 ) -> Iterator[Tuple[int, int]]:
     """Return an L-shaped tunnel between these two points."""
     x1, y1 = start
@@ -63,12 +62,12 @@ def tunnel_between(
 
 
 def generate_dungeon(
-    max_rooms: int,
-    room_min_size: int,
-    room_max_size: int,
-    map_width: int,
-    map_height: int,
-    player: Entity,
+        max_rooms: int,
+        room_min_size: int,
+        room_max_size: int,
+        map_width: int,
+        map_height: int,
+        player: Entity,
 ) -> GameMap:
     """Generate a new dungeon map."""
     dungeon = GameMap(map_width, map_height)

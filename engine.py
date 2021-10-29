@@ -9,6 +9,7 @@ from entity import Entity
 from input_handlers import EventHandler
 from game_map import GameMap
 
+
 class Engine:
     def __init__(self, entities: Set[Entity], event_handler: EventHandler, game_map: GameMap, player: Entity):
         self.entities = entities
@@ -27,14 +28,14 @@ class Engine:
             action.perform(self, self.player)
 
             self.update_fov()  # Update the FOV before the players next action.
-    
+
     def update_fov(self) -> None:
         """Recompute the visible area based on the players point of view."""
         self.game_map.visible[:] = compute_fov(
             self.game_map.tiles["transparent"],
             (self.player.x, self.player.y),
-            radius=8, # change the radius of fov
-            
+            radius=8,  # change the radius of fov
+
         )
         # If a tile is "visible" it should be added to "explored".
         self.game_map.explored |= self.game_map.visible
